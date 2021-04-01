@@ -1,5 +1,11 @@
 import React from "react";
 
-const NavBar = props => ();
+import * as S from "./style";
+
+const NavBar = props => (
+  <S.Wrapper>
+    NavBar
+  </S.Wrapper>
+);
 
 export { NavBar }
