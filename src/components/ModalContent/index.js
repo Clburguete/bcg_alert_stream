@@ -12,7 +12,6 @@ const ModalContent = props => {
     predictionConfidence
   } = props;
 
-  console.log("PROPS", props);
   return (
     <S.Wrapper severity={severity}>
       <S.Type>{type}</S.Type>
