@@ -2,10 +2,10 @@ import React from "react";
 
 import * as S from "./style";
 
-const Link = ({ linkTo, icon, text }) => {
+const Link = ({ linkTo, icon }) => {
 
   return (
-      <S.Button activeClassName={"--active"} to={linkTo}>
+    <S.Button activeClassName={"--active"} to={linkTo}>
       {icon}
       <S.ActiveMarker/>
     </S.Button>

@@ -7,18 +7,13 @@ import { Blocking } from "./Blocking";
 
 import * as S from "./style";
 
-const getCorrectedSeverity = (severity, predictionConfidence) => {
-  return Math.floor(severity * (predictionConfidence / 100));
-}
-
 const Alert = props => {
   const {
     alert: {
       title,
       key,
       isPrediction,
-      severity,
-      predictionConfidence
+      severity
     },
     deleteAlert,
     solvedBlocking,
@@ -27,20 +22,15 @@ const Alert = props => {
 
   const { isOpen, toggleModal } = useModal();
 
-  const correctedSeverity = isPrediction ? getCorrectedSeverity(severity, predictionConfidence) : severity;
-  const mappedAlert = {
-    ...props.alert,
-    severity: correctedSeverity
-  };
   const warningIcon = isPrediction ?
     <MdLightbulbOutline/> :
     <MdError/>;
   
-  const isBlocking = correctedSeverity === 5;
+  const isBlocking = severity === 5;
 
   return !!deleteAlert && isBlocking ? (
     <Blocking
-      {...mappedAlert}
+      {...props.alert}
       alertKey={key}
       setAsSolved={setAsSolved}
       solvedBlocking={solvedBlocking}
@@ -48,7 +38,7 @@ const Alert = props => {
   ):(
     <>
       <S.Wrapper
-        {...mappedAlert}
+        {...props.alert}
         onClick={toggleModal}
       >
         <S.WarningIcon isPrediction={isPrediction}>
@@ -56,7 +46,7 @@ const Alert = props => {
         </S.WarningIcon>
         <S.Title>{title}</S.Title>
         {
-          !!deleteAlert && (correctedSeverity < 3  || isPrediction) && (
+          !!deleteAlert && (severity < 3  || isPrediction) && (
           <S.CloseIcon onClick={() => deleteAlert(key)}>
             <MdClose/>
           </S.CloseIcon>
@@ -64,7 +54,7 @@ const Alert = props => {
         }
       </S.Wrapper>
       <Modal isOpen={isOpen} close={toggleModal}>
-        <ModalContent {...mappedAlert}/>
+        <ModalContent {...props.alert}/>
       </Modal>
     </>
   )

@@ -37,6 +37,11 @@ const ActiveMarker = styled.span`
   height: 8px;
   background-color: #9dd3ee;
   border-radius: 50%;
+
+  ${p => p.theme.breakpoints.landscape} {
+    top: 50%;
+    right: -14px;
+  }
 `;
 
 export {

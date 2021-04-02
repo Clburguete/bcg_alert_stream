@@ -21,6 +21,7 @@ const Wrapper = styled.section`
 
   ${p => p.theme.breakpoints.landscape} {
     flex-direction: column;
+    row-gap: 100px;
     top: 0;
     right: unset;
     width: calc(200px - 40px);

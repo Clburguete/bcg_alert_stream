@@ -1,8 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 
 import { Alert } from "@components";
 import { useAlert } from "@contexts";
+
+import * as S from "./style";
 
 // Data available
 // ------------------
@@ -29,7 +30,7 @@ const Home = () => {
   const data = items
     .filter(item => !clearedItems.includes(item.key));
   return (
-    <>
+    <S.List>
       {data.map(
         (alert) => (
           <Alert
@@ -41,7 +42,7 @@ const Home = () => {
           />
         )
       )}
-    </>
+    </S.List>
   )
 };
 

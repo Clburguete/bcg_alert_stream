@@ -1,9 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 
-import { Alert } from "@components";
+import { Alert, SearchBar } from "@components";
 import { useAlert } from "@contexts";
 
+
+import * as S from "./style";
 // Data available
 // ------------------
 // The alert data is generated using the Chance library.
@@ -20,20 +21,30 @@ import { useAlert } from "@contexts";
 
 
 const Complete = () => {
+
+  const [searchTerm, setSearchTerm] = useState("");
+
   const {
     items
   } = useAlert();
   const data = items;
   return (
     <>
-      {data.map(
-        (alert) => (
-          <Alert
-            key={alert.key}
-            alert={alert}  
-          />
-        )
-      )}
+      <S.List>
+        {data
+          .filter(elem => elem.title.toLowerCase().includes(searchTerm))
+          .map(
+            (alert) => (
+              <Alert
+                key={alert.key}
+                alert={alert}  
+              />
+            )
+        )}
+      </S.List>
+      <S.SearchWrapper>
+        <SearchBar value={searchTerm} handleChange={setSearchTerm}/>
+      </S.SearchWrapper>
     </>
   )
 };
