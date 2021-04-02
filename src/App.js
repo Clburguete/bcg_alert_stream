@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
 
 
 import { Routes } from "@routes";
@@ -9,13 +8,6 @@ import { createAlertStream } from "./utils";
 
 // you may decrease this if you're feeling brave!
 const INTERVAL_DURATION = 2000;
-
-const DebugNav = styled.nav`
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 1rem;
-`;
 
 export default function App() {
   const [items, setItems] = useState([]);
