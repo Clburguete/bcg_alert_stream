@@ -19,34 +19,13 @@ const DebugNav = styled.nav`
 
 export default function App() {
   const [items, setItems] = useState([]);
+  const [clearedItems, setClearedItems] = useState([]);
+  const [solvedBlocking, setSolvedBlocking] = useState([]);
   const [isRunning, setIsRunning] = useState(false);
   const interval = useRef(null);
 
-  // clear the alert stream
-  function handleClearTapped() {
-    setItems([]);
-  }
-
-  // start the alert stream
-  function handleStartTapped() {
-    if (!interval.current) {
-      setIsRunning(true);
-      interval.current = createAlertStream({
-        onNewAlert: setItems,
-        intervalDuration: INTERVAL_DURATION
-      });
-    }
-  }
-
-  // stop the alert stream
-  function handleStopTapped() {
-    if (interval.current) {
-      interval.current();
-      interval.current = null;
-      setIsRunning(false);
-    }
-  }
-
+  const markAsCleared = alertID => setClearedItems([...clearedItems, alertID]);
+  const setAsSolved = alertID => setSolvedBlocking([...solvedBlocking, alertID]);
   // start the alert stream on mount
   useEffect(() => {
     if (!interval.current) {
@@ -61,22 +40,15 @@ export default function App() {
   return (
     <ThemeProvider theme={THEME}>
       <GlobalStyle/>
-      <AlertProvider value={items}>
-        <div className="App">
-          <br />
-          <DebugNav>
-            <button disabled={isRunning} onClick={handleStartTapped}>
-              start
-            </button>
-            <button disabled={!isRunning} onClick={handleStopTapped}>
-              stop
-            </button>
-            <button disabled={!items.length} onClick={handleClearTapped}>
-              clear
-            </button>
-          </DebugNav>
+      <AlertProvider value={{
+          items,
+          clearedItems,
+          markAsCleared,
+          solvedBlocking,
+          setAsSolved
+        }
+      }>
           <Routes/>
-        </div>
       </AlertProvider>
     </ThemeProvider>
   );

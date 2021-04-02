@@ -15,18 +15,25 @@ const BasicAlert = css`
   box-shadow: 8px 8px 12px 0 rgba(0, 0, 0, 0.15),
    -8px -8px 8px 0 rgba(255, 255, 255, 0.3);
   background-color: white;
-  h6 {
+  cursor: pointer;
+
+  h5, h6 {
     margin: 0;
     grid-area: title;
   }
-
-
 `
 
 const THEME = {
   colors: {
-    main: '#004a51',
-    secondary: "#add8e666"
+    main: '#01282b',
+    secondary: "#add8e666",
+    text: '#edf0f1',
+    severity: {
+      default: 'darkgreen',
+      3: '#a1a105',
+      4: 'indianred',
+      5: '#c00b0b'
+    }
   },
   breakpoints: {
     landscape: `@media only screen 

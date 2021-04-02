@@ -18,21 +18,24 @@ import { useAlert } from "@contexts";
 // description: chance.paragraph({ sentences: 2 }),
 // time: new Date()
 
-const AlertItems = styled.ul`
-  padding: 0;
-`;
 
-const AlertStream = () => {
-  const data = useAlert();
+const Complete = () => {
+  const {
+    items
+  } = useAlert();
+  const data = items;
   return (
-    <AlertItems>
+    <>
       {data.map(
         (alert) => (
-          <Alert key={alert.key} {...alert}/>
+          <Alert
+            key={alert.key}
+            alert={alert}  
+          />
         )
       )}
-    </AlertItems>
+    </>
   )
 };
 
-export { AlertStream };
+export { Complete };

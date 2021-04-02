@@ -7,13 +7,13 @@ const Background = styled.div`
   bottom: 0;
   left: 0;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.3);
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -24,7 +24,13 @@ const Wrapper = styled.div`
   z-index: 2;
   background-color: white;
   box-shadow: 0px 4px 34px #C4C0CA;
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 8px;
+
+  svg {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
 `
 
 export {

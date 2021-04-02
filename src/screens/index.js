@@ -1,9 +1,9 @@
 import { Home } from "./Home";
-import { Severe } from "./Severe";
-import { AlertStream } from "./AlertStream";
+import { Filter } from "./Filter";
+import { Complete } from "./Complete";
 
 export {
   Home,
-  Severe,
-  AlertStream
+  Filter,
+  Complete
 }

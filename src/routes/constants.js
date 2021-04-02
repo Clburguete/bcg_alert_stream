@@ -1,4 +1,4 @@
-import { Home, Severe, AlertStream } from "@screens";
+import { Home, Filter, Complete } from "@screens";
 
 const ROUTES = [
   {
@@ -6,12 +6,12 @@ const ROUTES = [
     component: Home
   },
   {
-    path: "/severe",
-    component: Severe
+    path: "/complete",
+    component: Complete
   },
   {
-    path: "/debug",
-    component: AlertStream
+    path: "/filter",
+    component: Filter
   }
 ];
 

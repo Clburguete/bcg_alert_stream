@@ -1,9 +1,18 @@
 import styled from "styled-components";
 
+const getColors = (isPrediction, color) => {
+  const textColor = isPrediction ? `color: ${color}` : `color: #edf0f1`;
+  const bgColor = isPrediction ? `background-color: white` : `background-color: ${color}`;
+  return `
+    ${textColor};
+    ${bgColor}
+  `;
+}
+
 const WarningIcon = styled.span`
   grid-area: warning;
   font-size: 32px;
-  color: ${p => p.isPrediction ? "rgba(0,0,0,0.4)" : "inherit"};
+  color: inherit;
 `;
 
 const CloseIcon = styled.span`
@@ -16,29 +25,18 @@ const CloseIcon = styled.span`
 const Wrapper = styled.div`
   ${p => p.theme.shared.alert};
   ${p => {
-    switch(p.severity) {
-      case 3:
-        return `
-          background-color: yellow;
+    const severity = p.severity < 3 ? "default": p.severity;
+    return`
+          ${getColors(p.isPrediction, p.theme.colors.severity[severity])}
         `
-      case 4:
-        return `
-          color: indianred;
-        `;
-      case 5:
-        return `
-          background-color: #c00b0b;
-          color: white;
-        `;
-      default:
-        return `
-          color: darkgreen;
-        `;
-    }
   }};
 `;
 
-const Title = styled.h6``;
+const Title = styled.h5`
+  font-size: 24px;
+`;
+
+
 
 export {
   WarningIcon,

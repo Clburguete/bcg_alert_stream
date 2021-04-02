@@ -1,6 +1,8 @@
 import React from "react";
 import { MdClose, MdError, MdLightbulbOutline } from "react-icons/md";
 
+import { useModal } from "@hooks";
+import { Modal, ModalContent } from "@components";
 import { Blocking } from "./Blocking";
 
 import * as S from "./style";
@@ -10,10 +12,24 @@ const getCorrectedSeverity = (severity, predictionConfidence) => {
 }
 
 const Alert = props => {
-  const { isPrediction, severity, predictionConfidence } = props;
+  const {
+    alert: {
+      title,
+      key,
+      isPrediction,
+      severity,
+      predictionConfidence
+    },
+    deleteAlert,
+    solvedBlocking,
+    setAsSolved
+  } = props;
+
+  const { isOpen, toggleModal } = useModal();
+
   const correctedSeverity = isPrediction ? getCorrectedSeverity(severity, predictionConfidence) : severity;
   const mappedAlert = {
-    ...props,
+    ...props.alert,
     severity: correctedSeverity
   };
   const warningIcon = isPrediction ?
@@ -22,22 +38,35 @@ const Alert = props => {
   
   const isBlocking = correctedSeverity === 5;
 
-  return (
-    <S.Wrapper
+  return !!deleteAlert && isBlocking ? (
+    <Blocking
       {...mappedAlert}
-    >
-      <S.WarningIcon isPrediction={isPrediction}>
-        {warningIcon}
-      </S.WarningIcon>
-      <S.Title>{props.title}</S.Title>
-      {
-        (isPrediction) && (
-        <S.CloseIcon>
-          <MdClose/>
-        </S.CloseIcon>
-        )
-      }
-    </S.Wrapper>
+      alertKey={key}
+      setAsSolved={setAsSolved}
+      solvedBlocking={solvedBlocking}
+    />
+  ):(
+    <>
+      <S.Wrapper
+        {...mappedAlert}
+        onClick={toggleModal}
+      >
+        <S.WarningIcon isPrediction={isPrediction}>
+          {warningIcon}
+        </S.WarningIcon>
+        <S.Title>{title}</S.Title>
+        {
+          !!deleteAlert && (correctedSeverity < 3  || isPrediction) && (
+          <S.CloseIcon onClick={() => deleteAlert(key)}>
+            <MdClose/>
+          </S.CloseIcon>
+          )
+        }
+      </S.Wrapper>
+      <Modal isOpen={isOpen} close={toggleModal}>
+        <ModalContent {...mappedAlert}/>
+      </Modal>
+    </>
   )
 }
 
