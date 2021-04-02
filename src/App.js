@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
 
-import { Routes } from "@routes";
-import { AlertProvider } from "@contexts";
+import { Routes } from "./routes";
+import { AlertProvider } from "./contexts";
 import { THEME, ThemeProvider, GlobalStyle } from "./style";
 import { createAlertStream } from "./utils";
 

@@ -5,7 +5,6 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "@craco/craco": "5.8.0",
     "chance": "1.1.7",
     "react": "17.0.0",
     "react-dom": "17.0.0",
@@ -20,9 +19,9 @@
     "typescript": "3.8.3"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test --env=jsdom",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "browserslist": [

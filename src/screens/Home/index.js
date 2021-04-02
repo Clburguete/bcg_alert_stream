@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Alert } from "@components";
-import { useAlert } from "@contexts";
+import { Alert } from "./../../components";
+import { useAlert } from "./../../contexts";
 
 import * as S from "./style";
 

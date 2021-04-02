@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Select from 'react-select'
 
-import { Alert } from "@components";
-import { useAlert } from "@contexts";
+import { Alert } from "./../../components";
+import { useAlert } from "./../../contexts";
 import { ALERT_TYPES, PREDICTION_TYPES, SEVERITY_TYPES } from "./../../constants";
 
 import * as S from "./style";

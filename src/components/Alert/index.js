@@ -1,8 +1,8 @@
 import React from "react";
 import { MdClose, MdError, MdLightbulbOutline } from "react-icons/md";
 
-import { useModal } from "@hooks";
-import { Modal, ModalContent } from "@components";
+import { useModal } from "./../../hooks";
+import { Modal, ModalContent } from "./../../components";
 import { Blocking } from "./Blocking";
 
 import * as S from "./style";

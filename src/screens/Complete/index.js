@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { Alert, SearchBar } from "@components";
-import { useAlert } from "@contexts";
+import { Alert, SearchBar } from "./../../components";
+import { useAlert } from "./../../contexts";
 
 
 import * as S from "./style";

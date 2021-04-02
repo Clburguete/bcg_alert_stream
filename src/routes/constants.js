@@ -1,4 +1,4 @@
-import { Home, Filter, Complete } from "@screens";
+import { Home, Filter, Complete } from "./../screens";
 
 const ROUTES = [
   {
