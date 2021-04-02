@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { Routes } from "@routes";
 import { AlertProvider } from "@contexts";
-import { THEME, ThemeProvider } from "./style";
+import { THEME, ThemeProvider, GlobalStyle } from "./style";
 import { createAlertStream } from "./utils";
 
 // you may decrease this if you're feeling brave!
@@ -60,6 +60,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={THEME}>
+      <GlobalStyle/>
       <AlertProvider value={items}>
         <div className="App">
           <br />

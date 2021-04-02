@@ -2,10 +2,12 @@ import React from "react";
 
 import * as S from "./style";
 
-const LowPriority = props => (
+const Layout = ({ children }) => (
   <S.Wrapper>
-    <S.Title>{props.title}</S.Title>
+    {children}
   </S.Wrapper>
 );
 
-export { LowPriority }
+export {
+  Layout
+}

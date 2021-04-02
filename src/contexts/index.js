@@ -1,3 +1,3 @@
-import { AlertProvider, AlertConsumer, AlertContext} from "./alert";
+import { AlertProvider, AlertConsumer, AlertContext, useAlert} from "./alert";
 
-export { AlertProvider, AlertConsumer, AlertContext };
+export { AlertProvider, AlertConsumer, AlertContext, useAlert };

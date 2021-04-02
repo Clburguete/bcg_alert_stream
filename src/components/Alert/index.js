@@ -1,43 +1,43 @@
 import React from "react";
+import { MdClose, MdError, MdLightbulbOutline } from "react-icons/md";
 
 import { Blocking } from "./Blocking";
-import { HighPriority } from "./HighPriority";
-import { MediumPriority } from "./MediumPriority";
-import { LowPriority } from "./LowPriority";
+
+import * as S from "./style";
 
 const getCorrectedSeverity = (severity, predictionConfidence) => {
   return Math.floor(severity * (predictionConfidence / 100));
 }
 
-const getPriorityLevel = alert => {
-  const { severity, isPrediction, predictionConfidence } = alert;
-  const correctedSeverity = isPrediction ? getCorrectedSeverity(severity, predictionConfidence) : severity;
-  let PriorityAlert;
-
-  switch(correctedSeverity) {
-    case 3:
-      PriorityAlert = MediumPriority;
-      break;
-    case 4:
-      PriorityAlert = HighPriority;
-      break;
-    case 5:
-      PriorityAlert = Blocking;
-      break
-    default:
-      PriorityAlert = LowPriority;
-      break;
-  }
-
-  return PriorityAlert;
-}
-
 const Alert = props => {
-  const PriorityAlert = getPriorityLevel(props)
-
+  const { isPrediction, severity, predictionConfidence } = props;
+  const correctedSeverity = isPrediction ? getCorrectedSeverity(severity, predictionConfidence) : severity;
+  const mappedAlert = {
+    ...props,
+    severity: correctedSeverity
+  };
+  const warningIcon = isPrediction ?
+    <MdLightbulbOutline/> :
+    <MdError/>;
+  
+  const isBlocking = correctedSeverity === 5;
 
   return (
-    <PriorityAlert {...props}/>
+    <S.Wrapper
+      {...mappedAlert}
+    >
+      <S.WarningIcon isPrediction={isPrediction}>
+        {warningIcon}
+      </S.WarningIcon>
+      <S.Title>{props.title}</S.Title>
+      {
+        (isPrediction) && (
+        <S.CloseIcon>
+          <MdClose/>
+        </S.CloseIcon>
+        )
+      }
+    </S.Wrapper>
   )
 }
 

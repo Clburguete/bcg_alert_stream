@@ -7,6 +7,7 @@ module.exports = {
       "@screens": path.resolve(__dirname, "src/screens/"),
       "@routes": path.resolve(__dirname, "src/routes/"),
       "@contexts": path.resolve(__dirname, "src/contexts/"),
+      "@hooks": path.resolve(__dirname, "src/hooks/"),
     }
   }
 }

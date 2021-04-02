@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { Alert } from "@components";
-import { AlertContext } from "@contexts";
+import { useAlert } from "@contexts";
 
 // Data available
 // ------------------
@@ -18,21 +18,17 @@ import { AlertContext } from "@contexts";
 // description: chance.paragraph({ sentences: 2 }),
 // time: new Date()
 
-const AlertItems = styled.ul``;
+const AlertItems = styled.ul`
+  padding: 0;
+`;
 
 const AlertStream = () => {
-  const data = useContext(AlertContext);
+  const data = useAlert();
   return (
     <AlertItems>
       {data.map(
         (alert) => (
-          <Alert key={alert.key} {...alert}>
-            {/* <p>{severity}</p>
-            <p>{type}</p>
-            <p>{isPrediction ? "YES" : "NO"}</p>
-            <p>{description}</p>
-            <p>{time.toString()}</p> */}
-          </Alert>
+          <Alert key={alert.key} {...alert}/>
         )
       )}
     </AlertItems>

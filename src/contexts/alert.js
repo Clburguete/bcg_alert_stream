@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 const AlertContext = createContext();
 
@@ -7,4 +7,9 @@ const {
   Consumer: AlertConsumer
 } = AlertContext;
 
-export { AlertProvider, AlertConsumer, AlertContext };
+const useAlert = () => {
+  const context = useContext(AlertContext);
+  return context;
+}
+
+export { AlertProvider, AlertConsumer, AlertContext, useAlert };
