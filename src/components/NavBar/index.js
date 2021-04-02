@@ -11,7 +11,7 @@ const NavBar = () => (
       icon={<MdHome/>}
     />
     <Link
-      linkTo={"/complete"}
+      linkTo={"/complete-log"}
       icon={<MdHistory/>}
     />
     <Link

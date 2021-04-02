@@ -6,7 +6,7 @@ const ROUTES = [
     component: Home
   },
   {
-    path: "/complete",
+    path: "/complete-log",
     component: Complete
   },
   {
